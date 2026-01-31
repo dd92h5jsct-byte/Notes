@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ines, will you be my Valentine?</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #fde2ea, #fff5f8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      max-width: 420px;
+      width: 90%;
+      z-index: 2;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #d6336c;
+    }
+
+    img {
+      width: 200px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 16px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background: #f4a7b9;
+      color: white;
+      font-weight: 600;
+    }
+
+    #no {
+      background: #f1f1f1;
+      position: absolute;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .hamster {
+      position: fixed;
+      top: -50px;
+      font-size: 32px;
+      animation: fall linear forwards;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="https://i.imgur.com/6XK7QhG.png" alt="Nana heureuse" />
+
+    <h1>Ines 💖<br>Tu veux être ma Valentine ?</h1>
+
+    <div class="buttons">
+      <button id="yes">Oui 💕</button>
+      <button id="no">Non</button>
+    </div>
+
+    <h2 id="message" class="hidden">YAAAY 🥰💘<br>Je savais que tu dirais oui ✨</h2>
+  </div>
+
+  <!-- Remplace pink-matter.mp3 par ton fichier audio -->
+  <audio id="music" src="pink-matter.mp3"></audio>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const message = document.getElementById("message");
+    const music = document.getElementById("music");
+
+    noBtn.addEventListener("touchstart", moveNo);
+    noBtn.addEventListener("mouseover", moveNo);
+
+    function moveNo() {
+      const x = Math.random() * 200;
+      const y = Math.random() * 80;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    yesBtn.addEventListener("click", () => {
+      message.classList.remove("hidden");
+      noBtn.style.display = "none";
+      yesBtn.style.display = "none";
+      music.play();
+      startHamsters();
+    });
+
+    function startHamsters() {
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          const hamster = document.createElement("div");
+          hamster.classList.add("hamster");
+          hamster.textContent = "🐹";
+          hamster.style.left = Math.random() * 100 + "vw";
+          hamster.style.animationDuration = 2 + Math.random() * 3 + "s";
+          document.body.appendChild(hamster);
+
+          setTimeout(() => hamster.remove(), 5000);
+        }, i * 150);
+      }
+    }
+  </script>
+</body>
+</html>
