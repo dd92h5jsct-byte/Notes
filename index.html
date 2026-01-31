@@ -87,7 +87,9 @@
     <img src="thenotebook.jpg" alt="Nana heureuse" />
 
 
-    <h1>Ines 💖<br>Tu veux être ma Valentine ?</h1>
+    <h1 id="fake">Chargement du document...</h1>
+<h1 id="real" class="hidden">Ines 💖<br>Tu veux être ma Valentine ?</h1>
+
 
     <div class="buttons">
       <button id="yes">Oui 💕</button>
@@ -137,6 +139,14 @@
         }, i * 150);
       }
     }
+    const fake = document.getElementById("fake");
+const real = document.getElementById("real");
+
+setTimeout(() => {
+  fake.style.display = "none";
+  real.classList.remove("hidden");
+}, 2000);
+
   </script>
 </body>
 </html>
